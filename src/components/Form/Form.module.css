@@ -54,7 +54,8 @@
   background: rgba 255, 255, 255, 0.5;
   appearance: none;
   outline: none;
-  color: #333;
+  color: #4a4252;
   margin-left: 5px;
   width: 400px;
+  text-align: center;
 }
