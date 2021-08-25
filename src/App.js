@@ -3,6 +3,7 @@ import ContactList from "./components/ContactList/ContactList";
 import shortid from "shortid";
 import Form from "./components/Form/Form";
 import Filter from "./components/Filter/Filter";
+import s from "./App.module.css";
 
 export default class App extends Component {
   state = {
@@ -51,17 +52,28 @@ export default class App extends Component {
     );
   };
 
+  deleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter(
+        (contact) => contact.id !== contactId
+      ),
+    }));
+  };
+
   render() {
     const { filter } = this.state;
     const VisibleContacts = this.getVisibleContacts();
 
     return (
       <>
-        <h1>Phonebook</h1>
+        <h1 classname={s}>Phonebook</h1>
         <Form onSubmit={this.addContact} />
-        <h2>Contacts</h2>
+        <h2 classname={s}>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
-        <ContactList contacts={VisibleContacts} />
+        <ContactList
+          contacts={VisibleContacts}
+          onDeleteContact={this.deleteContact}
+        />
       </>
     );
   }
