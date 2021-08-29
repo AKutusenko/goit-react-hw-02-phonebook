@@ -17,13 +17,9 @@ export default class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    let duplicate;
-
-    this.state.contacts.forEach((contact) => {
-      if (contact.name === name) {
-        duplicate = true;
-      }
-    });
+    let duplicate = this.state.contacts.find(
+      (contact) => contact.name === name
+    );
 
     if (duplicate) {
       alert("Такой контакт уже существует!");
@@ -66,9 +62,9 @@ export default class App extends Component {
 
     return (
       <>
-        <h1 classname={s}>Phonebook</h1>
+        <h1 className={s}>Phonebook</h1>
         <Form onSubmit={this.addContact} />
-        <h2 classname={s}>Contacts</h2>
+        <h2 className={s}>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
         <ContactList
           contacts={VisibleContacts}
